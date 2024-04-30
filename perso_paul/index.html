@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulaire d'inscription</title>
+</head>
+<body>
+    <h1>Formulaire d'inscription</h1>
+    <form id="inscriptionForm" enctype="multipart/form-data">
+        <div>
+            <label for="nom">Nom :</label>
+            <input type="text" id="nom" name="nom" required>
+        </div>
+        <div>
+            <label for="prenom">Prénom :</label>
+            <input type="text" id="prenom" name="prenom" required>
+        </div>
+        <div>
+            <label for="nomParent1">Nom du parent 1 :</label>
+            <input type="text" id="nomParent1" name="nomParent1" required>
+        </div>
+        <div>
+            <label for="prenomParent1">Prénom du parent 1 :</label>
+            <input type="text" id="prenomParent1" name="prenomParent1" required>
+        </div>
+        <div>
+            <label for="nomParent2">Nom du parent 2 :</label>
+            <input type="text" id="nomParent2" name="nomParent2" required>
+        </div>
+        <div>
+            <label for="prenomParent2">Prénom du parent 2 :</label>
+            <input type="text" id="prenomParent2" name="prenomParent2" required>
+        </div>
+        <div>
+            <label for="image">Image :</label>
+            <input type="file" id="image" name="image" accept="image/*" required>
+        </div>
+        <div>
+            <button type="submit">Envoyer</button>
+        </div>
+    </form>
+
+    <script>
+        document.getElementById('inscriptionForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const form = event.target;
+            const formData = new FormData(form);
+            
+            fetch('/upload', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erreur lors de la requête.');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log(data);
+                alert('Données envoyées avec succès!');
+            })
+            .catch(error => {
+                console.error('Erreur:', error);
+                alert('Une erreur est survenue lors de l\'envoi des données.');
+            });
+        });
+    </script>
+</body>
+</html>
