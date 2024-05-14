@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Page de connexion</title>
+    <style>
+        body {
+            background-image: url("gene.jpg");
+            background-repeat: repeat;
+            background-position: 0 0;
+            animation: scrollBackground 60s linear infinite;
+        }
+
+        background-image {
+            opacity: 0.2;
+        }
+
+        @keyframes scrollBackground {
+            0% {
+                background-position: 0 0;
+            }
+            100% {
+                background-position: 100% 100%;
+            }
+        }
+    </style>
+    <script src="scriptgenealogy.js"></script>
+</head>
+<body>
+    <h1>Connexion</h1>
+    
+    <form>
+        <label for="username">Nom d'utilisateur:</label>
+        <input type="text" id="username" name="username" required><br><br>
+        
+        <label for="password">Mot de passe:</label>
+        <input type="password" id="password" name="password" required><br><br>
+        
+        <button type="submit">Se connecter</button>
+        <button type="reset">Réinitialiser</button>
+    </form>
+
+    <p>Pas de compte ? Créez-en un <a href="creationcompte.html">ici</a> !</p>
+</body>
+</html>
